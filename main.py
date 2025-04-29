@@ -41,10 +41,10 @@ def sales_event(request):
 
     try:
         validate(instance=data, schema=schema)
-        print("Payload is valid against the schema.")
+        logger.info("Payload is valid against the schema.")
     except ValidationError as e:
-        logger.error(f"Payload is invalid: {e}")
-        logger.error(f"Error details: {e}")
+        logger.exception(f"Payload is invalid: {e}")
+        logger.exception(f"Error details: {e}")
         return make_response(jsonify({"error": "payload is invalid"}))
     
     logger.info("Payload processed successfully")
