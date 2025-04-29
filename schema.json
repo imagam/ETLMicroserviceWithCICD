@@ -1,0 +1,183 @@
+{
+    "type": "object",
+    "properties": {
+      "transactionId": {
+        "type": "string",
+        "description": "Unique identifier for the transaction"
+      },
+      "orderId": {
+        "type": "string",
+        "description": "Identifier for the associated order"
+      },
+      "transactionDate": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Date and time of the transaction in ISO 8601 format"
+      },
+      "customerId": {
+        "type": "string",
+        "description": "Identifier for the customer"
+      },
+      "customerEmail": {
+        "type": "string",
+        "format": "email",
+        "description": "Email address of the customer"
+      },
+      "shippingAddress": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "street",
+          "city",
+          "state",
+          "zipCode",
+          "country"
+        ]
+      },
+      "billingAddress": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "street",
+          "city",
+          "state",
+          "zipCode",
+          "country"
+        ]
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "string"
+            },
+            "productName": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "unitPrice": {
+              "type": "number",
+              "format": "float",
+              "minimum": 0
+            },
+            "totalPrice": {
+              "type": "number",
+              "format": "float",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "productId",
+            "productName",
+            "quantity",
+            "unitPrice",
+            "totalPrice"
+          ]
+        },
+        "minItems": 1
+      },
+      "subtotal": {
+        "type": "number",
+        "format": "float",
+        "minimum": 0
+      },
+      "shippingCost": {
+        "type": "number",
+        "format": "float",
+        "minimum": 0
+      },
+      "taxAmount": {
+        "type": "number",
+        "format": "float",
+        "minimum": 0
+      },
+      "discountAmount": {
+        "type": "number",
+        "format": "float",
+        "minimum": 0
+      },
+      "totalAmount": {
+        "type": "number",
+        "format": "float",
+        "minimum": 0
+      },
+      "paymentMethod": {
+        "type": "string"
+      },
+      "paymentStatus": {
+        "type": "string",
+        "enum": [
+          "Pending",
+          "Paid",
+          "Failed",
+          "Refunded"
+        ]
+      },
+      "transactionStatus": {
+        "type": "string",
+        "enum": [
+          "Processing",
+          "Completed",
+          "Shipped",
+          "Delivered",
+          "Cancelled",
+          "Returned"
+        ]
+      }
+    },
+    "required": [
+      "transactionId",
+      "orderId",
+      "transactionDate",
+      "customerId",
+      "customerEmail",
+      "shippingAddress",
+      "billingAddress",
+      "items",
+      "subtotal",
+      "shippingCost",
+      "taxAmount",
+      "discountAmount",
+      "totalAmount",
+      "paymentMethod",
+      "paymentStatus",
+      "transactionStatus"
+    ]
+  }
